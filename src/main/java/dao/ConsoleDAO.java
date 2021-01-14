@@ -2,6 +2,7 @@ package dao;
 
 import models.Group;
 import models.Student;
+import models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,11 @@ public class ConsoleDAO implements DAO {
             .filter(x -> x.getStudentId() == studentId)
             .findAny()
             .orElse(null);
+    }
+
+    @Override
+    public List<Task> getTasks(long studentId) {
+        return null;
     }
 
     private void fillTestDataGroups() {

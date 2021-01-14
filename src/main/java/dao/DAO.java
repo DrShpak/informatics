@@ -2,6 +2,7 @@ package dao;
 
 import models.Group;
 import models.Student;
+import models.Task;
 
 import java.util.List;
 
@@ -28,5 +29,7 @@ public interface DAO {
     public Group getGroupById(long groupId);
 
     public Student getStudentById(long studentId);
+
+    List<Task> getTasks(long studentId);
 
 }

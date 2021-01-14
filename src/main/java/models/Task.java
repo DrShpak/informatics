@@ -11,11 +11,16 @@ public class Task {
     @Getter
     private boolean isCompleted = false; // по дефолту задача невыполнена
 
-    public void complete(boolean completed) {
-        isCompleted = completed;
+    public Task(long id, boolean isCompleted) {
+        this.id = id;
+        this.isCompleted = isCompleted;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
+    public Task() {
+
+    }
+
+    public void complete(boolean completed) {
+        isCompleted = completed;
     }
 }

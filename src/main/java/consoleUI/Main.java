@@ -1,14 +1,17 @@
 package consoleUI;
 
 import dao.ConsoleDAO;
+import dao.db.PostgresDAO;
 import models.Group;
+import models.Student;
 import servicies.GroupManager;
 
 public class Main {
-    private static GroupManager groupManager = new GroupManager(new ConsoleDAO());
+    private static GroupManager groupManager = new GroupManager(new PostgresDAO());
 
     public static void main(String[] args) {
-        deleteGroup(2);
+//        System.out.println(groupManager.getAllGroups());
+        System.out.println(groupManager.getGroupById(1));
     }
 
     private static void printAll() {
@@ -21,8 +24,9 @@ public class Main {
         groupManager.insertGroup(group);
     }
 
-    private static void addStudentToGroup(String name, String surname, int groupNumber, int year) {
+    private static void addStudentToGroup(long groupId, String name, String surname, int year) {
         // что.
+        groupManager.insertStudent(Student.getStudentWithDefaultsParams(name, surname, groupId));
     }
 
     private static void deleteGroup(long groupId) {

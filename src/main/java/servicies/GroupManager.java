@@ -5,6 +5,8 @@ import lombok.Getter;
 import models.Group;
 import models.Student;
 
+import java.util.List;
+
 public class GroupManager {
     @Getter
     private final DAO dao;
@@ -13,12 +15,14 @@ public class GroupManager {
         this.dao = dao;
     }
 
-    public Group createGroup(int groupNumber, int year) {
-        return Group.getGroupWithDefaultParams(groupNumber, year);
+    public void createGroup(int groupNumber, int year) {
+        var group = Group.getGroupWithDefaultParams(groupNumber, year);
+        dao.insertGroup(group);
     }
 
-    public Student createStudent(String name, String surname, long groupId) {
-        return Student.getStudentWithDefaultsParams(name, surname, groupId);
+    public void createStudent(String name, String surname, long groupId) {
+        var student = Student.getStudentWithDefaultsParams(name, surname, groupId);
+        dao.insertStudent(student);
     }
 
     public void insertGroup(Group group) {
@@ -51,5 +55,9 @@ public class GroupManager {
 
     public Student getStudentById(long studentId) {
         return dao.getStudentById(studentId);
+    }
+
+    public List<Group> getAllGroups() {
+        return dao.selectAll();
     }
 }

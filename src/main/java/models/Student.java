@@ -8,7 +8,8 @@ import java.util.List;
 
 @ToString
 public class Student {
-    @Getter@Setter
+    @Getter
+    @Setter
     private long studentId;
     @Getter
     private final long groupId;
@@ -16,8 +17,8 @@ public class Student {
     private final String name;
     @Getter
     private final String surname;
-    @Getter
-    private final List<Task> tasks;
+    @Getter@Setter
+    private List<Task> tasks;
 
     private Student(long groupId, String name, String surname) {
         this.studentId = -1;
@@ -27,8 +28,20 @@ public class Student {
         this.tasks = List.of(new Task(), new Task(), new Task());
     }
 
+    private Student(long studentId, long groupId, String name, String surname) {
+        this.studentId = studentId;
+        this.groupId = groupId;
+        this.name = name;
+        this.surname = surname;
+        this.tasks = List.of(new Task(), new Task(), new Task());
+    }
+
     public static Student getStudentWithDefaultsParams(String name, String surname, long groupId) {
         return new Student(groupId, name, surname);
+    }
+
+    public static Student getStudent(long studentId, String name, String surname, long groupId) {
+        return new Student(studentId, groupId, name, surname);
     }
 
     public void completeTask(int numberTask) {

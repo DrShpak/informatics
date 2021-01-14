@@ -25,6 +25,13 @@ public class Group {
         this.students = new ArrayList<>();
     }
 
+    private Group(long groupId, int groupNumber, int year) {
+        this.groupId = groupId;
+        this.groupNumber = groupNumber;
+        this.year = year;
+        this.students = new ArrayList<>();
+    }
+
     public void addStudent(String name, String surname) {
         students.add(Student.getStudentWithDefaultsParams(name, surname, this.getGroupId()));
     }
@@ -43,6 +50,10 @@ public class Group {
 
     public static Group getGroupWithDefaultParams(int groupNumber, int year) {
         return new Group(groupNumber, year);
+    }
+
+    public static Group getGroup(long groupId, int groupNumber, int year) {
+        return new Group(groupId, groupNumber, year);
     }
 }
 
